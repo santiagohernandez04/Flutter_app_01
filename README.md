@@ -45,13 +45,17 @@ Aplicación Flutter simple que demuestra el uso de `StatefulWidget` y `setState(
 
 
 ### Evidencias
+
 Pantalla inicial
 
-
-
+<img width="543" height="976" alt="image" src="https://github.com/user-attachments/assets/738d1b31-7688-4165-a017-fcca8e92ae8a" />
 
 Pantalla despues de oprimir el boton
 
+<img width="544" height="987" alt="image" src="https://github.com/user-attachments/assets/b57a51ae-974d-4d89-9b77-e99da7c3b698" />
+
 
 **Desarrollado por**: Santiago Hernandez Rosales  
+**Codigo**: 230221049
+
 **Taller**: Flutter + Widgets + Git Flow
