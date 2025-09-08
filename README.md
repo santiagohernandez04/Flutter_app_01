@@ -1,16 +1,57 @@
-# flutter_application_1
+# Taller 1 - Flutter + Widgets + Git Flow
 
-A new Flutter project.
+## Descripción
+Aplicación Flutter simple que demuestra el uso de `StatefulWidget` y `setState()`.
 
-## Getting Started
+## Datos del Estudiante
+- **Nombre**: Santiago Hernandez Rosales
+- **Rama**: `feature/taller1`
 
-This project is a starting point for a Flutter application.
+## Características Implementadas ✅
 
-A few resources to get you started if this is your first Flutter project:
+### Requisitos Obligatorios
+- **StatefulWidget**: `HomePage` con estado
+- **setState()**: Cambia título del AppBar
+- **AppBar variable**: "Hola, Flutter" ↔ "¡Título cambiado!"
+- **Text centrado**: Nombre del estudiante
+- **Imágenes en Row**
+- **Botón con setState()**: Cambia título + SnackBar
+- **SnackBar**: "Título actualizado"
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Widgets Adicionales
+- **Container**: Contenedor con texto centrado
+- **ListView**: Lista simple con iconos
+- **OutlinedButton**: Botón adicional
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Pasos para Ejecutar
+
+1. **Instalar dependencias**:
+   ```bash
+   flutter pub get
+   ```
+
+2. **Ejecutar la aplicación**:
+   ```bash
+   flutter run
+   ```
+
+## Funcionalidades
+
+- **Cambio de título**: Botón azul que alterna el título del AppBar
+- **Imágenes**: Una de red y una local en contenedores
+- **Lista simple**: 3 elementos con iconos de colores
+- **Container**: Caja con texto explicativo
+- **SnackBars**: Mensajes al presionar botones
+
+
+### Evidencias
+Pantalla inicial
+
+
+
+
+Pantalla despues de oprimir el boton
+
+
+**Desarrollado por**: Santiago Hernandez Rosales  
+**Taller**: Flutter + Widgets + Git Flow
