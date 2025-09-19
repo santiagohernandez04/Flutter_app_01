@@ -55,7 +55,74 @@ Pantalla despues de oprimir el boton
 <img width="544" height="987" alt="image" src="https://github.com/user-attachments/assets/b57a51ae-974d-4d89-9b77-e99da7c3b698" />
 
 
-**Desarrollado por**: Santiago Hernandez Rosales  
-**Codigo**: 230221049
+---
 
-**Taller**: Flutter + Widgets + Git Flow
+# Taller 2 - Navegación, widgets y ciclo de vida en Flutter
+
+## Descripción
+Desarrollar una aplicación en Flutter que implemente navegación con go_router, uso de widgets intermedios y evidencie el ciclo de vida de un StatefulWidget. El objetivo es comprender go, push y replace, el paso de parámetros entre pantallas y el momento de ejecución de los métodos del ciclo de vida.
+
+**Rama**: `feature/taller_paso_parametros`
+
+## Características Implementadas 
+
+### 1. Navegación y Paso de Parámetros
+- **go_router**: Implementación de navegación con go_router
+- **Paso de parámetros**: Envío de datos entre pantallas principales y secundarias
+- **Tipos de navegación**:
+  - `go()`: Navegación que reemplaza la pila de navegación
+  - `push()`: Navegación que agrega a la pila (botón atrás funcional)
+  - `replace()`: Navegación que reemplaza la pantalla actual
+
+### 2. Widgets Implementados
+- **GridView**: Lista de elementos en formato de cuadrícula
+- **TabBar**: Navegación por pestañas dentro de una pantalla
+- **Card**: Widget personalizado para mostrar información de estudiantes
+
+### 3. Ciclo de Vida de StatefulWidget
+- **initState()**: Inicialización del estado del widget
+- **didChangeDependencies()**: Se ejecuta cuando las dependencias cambian
+- **build()**: Construcción del árbol de widgets
+- **setState()**: Actualización del estado del widget
+- **dispose()**: Limpieza de recursos al destruir el widget
+
+## Arquitectura y Navegación
+
+### Rutas Implementadas
+- **`/`**: Pantalla principal (HomeView)
+- **`/details/:id`**: Pantalla de detalles con parámetro dinámico
+
+### Envío de Parámetros
+```dart
+// Navegación con parámetros usando go_router
+context.go('/details/${student.id}');
+context.push('/details/${student.id}');
+context.go('/details/${student.id}');
+```
+
+## Widgets Utilizados y Justificación
+
+### GridView
+- **Propósito**: Mostrar una lista de estudiantes en formato de cuadrícula
+- **Justificación**: Permite visualizar múltiples elementos de manera organizada y eficiente
+
+### TabBar
+- **Propósito**: Navegación por secciones dentro de la pantalla principal
+- **Justificación**: Mejora la experiencia de usuario al organizar contenido en categorías
+
+### Card (Widget Personalizado)
+- **Propósito**: Mostrar información de cada estudiante de manera estructurada
+- **Justificación**: Proporciona una interfaz consistente y reutilizable para mostrar datos
+
+## Evidencias del Ciclo de Vida
+
+### Métodos Registrados en Consola
+- **initState()**: Se ejecuta una sola vez al crear el widget
+- **didChangeDependencies()**: Se ejecuta cuando las dependencias del widget cambian
+- **build()**: Se ejecuta cada vez que el widget necesita reconstruirse
+- **setState()**: Se ejecuta cuando se actualiza el estado del widget
+- **dispose()**: Se ejecuta cuando el widget se elimina de la pila de navegación
+
+
+
+
