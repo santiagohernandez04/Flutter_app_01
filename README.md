@@ -124,5 +124,63 @@ context.go('/details/${student.id}');
 - **dispose()**: Se ejecuta cuando el widget se elimina de la pila de navegación
 
 
+---
+
+# Taller 3 - Segundo plano, asincronía y servicios en Flutter
+
+## Descripción
+Aplicación Flutter que demuestra asincronía con Future, async/await, uso de Timer (cronómetro) y empleo de Isolate para tareas pesadas, evitando bloquear la UI.
+
+**Rama**: `feature/taller_segundo_plano`
+
+## Características Implementadas
+
+### 1. Asincronía con Future / async / await
+- **Servicio simulado**: `FakeApiService` con `Future.delayed` (2-3 segundos)
+- **Estados en pantalla**: Cargando… / Éxito / Error
+- **Logs en consola**: Orden de ejecución (antes, durante y después)
+- **Manejo de errores**: 20% de probabilidad de error simulado
+
+### 2. Timer - Cronómetro
+- **Controles**: Iniciar / Pausar / Reanudar / Reiniciar
+- **Actualización**: Cada 1 segundo
+- **Formato**: HH:MM:SS
+- **Limpieza**: Cancelar timer al pausar o salir de la vista (`dispose()`)
+
+### 3. Isolate para tarea pesada
+- **Función CPU-bound**: Suma de cuadrados (1 millón de iteraciones)
+- **Ejecución**: `Isolate.spawn` para evitar bloquear la UI
+- **Comunicación**: Mensajes entre Isolate y UI principal
+- **Progreso**: Actualización en tiempo real del progreso
+- **Resultado**: Mostrar resultado final en la UI
+
+## Arquitectura y Navegación
+
+### Rutas Implementadas
+- **`/`**: Pantalla principal con navegación a todas las funcionalidades
+- **`/async`**: Vista de asincronía con Future/async-await
+- **`/timer`**: Vista del cronómetro con Timer
+- **`/isolate`**: Vista de tarea pesada con Isolate
+
+### Servicios
+- **`FakeApiService`**: Servicio simulado con delays y errores aleatorios
+
+## Cuándo usar cada herramienta
+
+### Future / async / await
+- **Cuándo usar**: Operaciones de red, base de datos, archivos
+- **Ventajas**: Código más legible, manejo de errores simplificado
+- **Ejemplo**: Cargar datos de una API, leer archivos
+
+### Timer
+- **Cuándo usar**: Actualizaciones periódicas, cronómetros, animaciones
+- **Ventajas**: Control preciso del tiempo, cancelación fácil
+- **Ejemplo**: Cronómetros, contadores, actualizaciones de UI
+
+### Isolate
+- **Cuándo usar**: Tareas CPU-intensivas que pueden bloquear la UI
+- **Ventajas**: Paralelismo real, UI siempre responsiva
+- **Ejemplo**: Procesamiento de imágenes, cálculos matemáticos complejos
+
 
 

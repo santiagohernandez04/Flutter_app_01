@@ -32,8 +32,15 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Aprendiendo Flutter'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.speed, color: Colors.deepOrange),
+            onPressed: () => context.push('/isolate'),
+            tooltip: 'Ir a Isolate',
+          ),
+        ],
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -42,7 +49,9 @@ class _HomeViewState extends State<HomeView> {
             const SizedBox(height: 20),
             const _NavigationSection(),
             const SizedBox(height: 20),
-            const Expanded(child: _GridViewSection()),
+            const _Taller3Section(),
+            const SizedBox(height: 20),
+            const _GridViewSection(),
           ],
         ),
       ),
@@ -95,6 +104,47 @@ class _NavigationSection extends StatelessWidget {
   }
 }
 
+class _Taller3Section extends StatelessWidget {
+  const _Taller3Section();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Taller 3 - Segundo plano, asincronía y servicios:',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        const SizedBox(height: 20),
+        NavigationButton(
+          title: 'Ir a Asincronía (Future / async-await)',
+          icon: Icons.cloud_download,
+          color: Colors.indigo,
+          onPressed: () => context.push('/async'),
+        ),
+        const SizedBox(height: 8),
+        NavigationButton(
+          title: 'Ir al Cronómetro (Timer)',
+          icon: Icons.timer,
+          color: Colors.deepPurple,
+          onPressed: () => context.push('/timer'),
+        ),
+        const SizedBox(height: 8),
+        NavigationButton(
+          title: 'Ir a Isolate (Tarea Pesada)',
+          icon: Icons.speed,
+          color: Colors.deepOrange,
+          onPressed: () => context.push('/isolate'),
+        ),
+      ],
+    );
+  }
+}
+
 class _GridViewSection extends StatelessWidget {
   const _GridViewSection();
 
@@ -111,7 +161,8 @@ class _GridViewSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        Expanded(
+        SizedBox(
+          height: 300, // Altura fija para el GridView
           child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
