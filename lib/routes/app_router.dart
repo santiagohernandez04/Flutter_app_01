@@ -1,6 +1,9 @@
 import 'package:go_router/go_router.dart';
 import '../views/home_view.dart';
 import '../views/details_view.dart';
+import '../views/async_view.dart';
+import '../views/timer_view.dart';
+import '../views/isolate_view.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -21,6 +24,21 @@ class AppRouter {
             parameter: parameter,
           );
         },
+      ),
+      GoRoute(
+        path: '/async',
+        name: 'async',
+        builder: (context, state) => const AsyncView(),
+      ),
+      GoRoute(
+        path: '/timer',
+        name: 'timer',
+        builder: (context, state) => const TimerView(),
+      ),
+      GoRoute(
+        path: '/isolate',
+        name: 'isolate',
+        builder: (context, state) => const IsolateView(),
       ),
     ],
   );
