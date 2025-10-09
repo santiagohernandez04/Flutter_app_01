@@ -182,5 +182,85 @@ Aplicación Flutter que demuestra asincronía con Future, async/await, uso de Ti
 - **Ventajas**: Paralelismo real, UI siempre responsiva
 - **Ejemplo**: Procesamiento de imágenes, cálculos matemáticos complejos
 
+---
+
+# Taller 4 - Peticiones HTTP y Consumo de API Pública en Flutter
+
+## Descripción
+Aplicación Flutter que consume datos desde la API pública de Giphy usando el paquete `http`, con navegación mediante `go_router`. Implementa manejo de estados (cargando/éxito/error), manejo de errores y buenas prácticas de separación por servicios.
+
+**Rama**: `feature/taller_http`
+
+## API Utilizada: Giphy
+
+### Endpoint Principal
+```
+https://api.giphy.com/v1/gifs/search?api_key={API_KEY}&q={query}&limit={limit}
+```
+
+### Configuración del API Key
+
+El API key se gestiona mediante variables de entorno usando un archivo `.env`:
+
+1. **Crear archivo `.env`** en la raíz del proyecto:
+   ```bash
+   # API Key de Giphy
+   GIPHY_API_KEY=tu_api_key_aqui
+   ```
+
+2. **Obtener API Key**:
+   - Visite: https://developers.giphy.com/
+   - Cree una cuenta o inicia sesión
+   - Cree una nueva app para obtener su API key
 
 
+### Modelos Implementados
+
+#### `GifModel`
+Representa un GIF individual con sus propiedades:
+- `id`: Identificador único del GIF
+- `title`: Título o descripción del GIF
+- `url`: URL del GIF en Giphy
+- `rating`: Clasificación de contenido (G, PG, PG-13, R)
+- `images`: Objeto con diferentes resoluciones de imágenes
+
+#### `GifImages` y `GifImageData`
+Maneja las diferentes resoluciones disponibles del GIF:
+- `original`: Imagen original de alta resolución
+- `fixedHeight`: Imagen con altura fija (200px)
+- `fixedWidth`: Imagen con ancho fijo (200px)
+- `downsized`: Versión reducida
+
+#### `GiphyResponse`
+Modelo para la respuesta completa de la API:
+- `data`: Lista de GIFs
+- `pagination`: Información de paginación
+
+### Servicios
+
+#### `GiphyService`
+Servicio encargado de realizar las peticiones HTTP a la API de Giphy.
+
+**Métodos implementados**:
+
+1. **`searchGifs()`**
+   - Busca GIFs según un término de búsqueda
+   - Parámetros: `query` (requerido), `limit` (por defecto 10), `offset`
+   - Manejo de errores: códigos 429 (límite de peticiones), 500+ (error del servidor)
+
+2. **`getTrendingGifs()`**
+   - Obtiene GIFs trending (populares del momento)
+   - Parámetros: `limit` (por defecto 10), `offset`
+   - Sin necesidad de término de búsqueda
+
+## Rutas Implementadas con go_router
+
+### Configuración de Rutas
+
+```dart
+GoRoute(
+  path: '/giphy',
+  name: 'giphy',
+  builder: (context, state) => const GiphyListView(),
+)
+```
