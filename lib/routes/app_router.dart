@@ -4,6 +4,7 @@ import '../views/details_view.dart';
 import '../views/async_view.dart';
 import '../views/timer_view.dart';
 import '../views/isolate_view.dart';
+import '../views/giphy_list_view.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -39,6 +40,12 @@ class AppRouter {
         path: '/isolate',
         name: 'isolate',
         builder: (context, state) => const IsolateView(),
+      ),
+      // Rutas para el taller de Giphy
+      GoRoute(
+        path: '/giphy',
+        name: 'giphy',
+        builder: (context, state) => const GiphyListView(),
       ),
     ],
   );

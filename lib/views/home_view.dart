@@ -51,6 +51,8 @@ class _HomeViewState extends State<HomeView> {
             const SizedBox(height: 20),
             const _Taller3Section(),
             const SizedBox(height: 20),
+            const _Taller4Section(),
+            const SizedBox(height: 20),
             const _GridViewSection(),
           ],
         ),
@@ -139,6 +141,33 @@ class _Taller3Section extends StatelessWidget {
           icon: Icons.speed,
           color: Colors.deepOrange,
           onPressed: () => context.push('/isolate'),
+        ),
+      ],
+    );
+  }
+}
+
+class _Taller4Section extends StatelessWidget {
+  const _Taller4Section();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Taller 4 - Peticiones HTTP y Consumo de API:',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        const SizedBox(height: 20),
+        NavigationButton(
+          title: 'Ir a Giphy Browser (API)',
+          icon: Icons.gif_box,
+          color: Colors.pinkAccent,
+          onPressed: () => context.push('/giphy'),
         ),
       ],
     );
