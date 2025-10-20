@@ -264,3 +264,139 @@ GoRoute(
   builder: (context, state) => const GiphyListView(),
 )
 ```
+
+---
+
+# Taller 5 - Distribución de APK con Firebase App Distribution
+
+## Descripción
+Implementación de distribución de APKs usando Firebase App Distribution para pruebas con testers externos antes del lanzamiento oficial en tiendas.
+
+**Rama**: `feature/app_distribution`
+
+## Características Implementadas
+
+### 1. Configuración de Firebase
+- **Proyecto Firebase**: FlutterAppUceva
+- **App Android registrada**: `com.example.flutter_application_1`
+- **Google Services**: Configuración de `google-services.json`
+- **Plugins Gradle**: Google Services Plugin v4.4.4
+
+### 2. Versionado de la Aplicación
+- **Sistema de versionado**: `versionName+versionCode`
+- **Versión inicial**: `1.0.0+1`
+- **Versión actualizada**: `1.0.1+2`
+- **Formato**: `MAJOR.MINOR.PATCH+BUILD_NUMBER`
+
+## Flujo de Distribución
+
+### Paso 1: Generar APK de Release
+
+```bash
+# Generar el APK de release
+flutter build apk --release
+
+# El APK se generará en:
+# build/app/outputs/flutter-apk/app-release.apk
+```
+
+### Paso 2: Configurar Firebase App Distribution
+
+1. **Acceder a Firebase Console**
+   - URL: https://console.firebase.google.com/
+   - Proyecto: FlutterAppUceva
+
+2. **Ir a App Distribution**
+   - Menú lateral: Release & Monitor → App Distribution
+
+3. **Crear Grupo de Testers**
+   - Ir a "Testers & Groups"
+   - Click en "Add Group"
+   - Nombre: `QA_Clase`
+   - Agregar tester
+
+4. **Subir Release**
+   - Ir a "Releases"
+   - Click en "Distribute" o "New Release"
+   - Subir archivo: `app-release.apk`
+   - Asignar al grupo: `QA_Clase`
+   - Agregar Release Notes
+
+### Paso 3: Release Notes (Formato)
+
+```
+Versión 1.0.1 - [Fecha]
+Responsable: [Nombre]
+
+Cambios implementados:
+- Configuración de Firebase App Distribution
+- Actualización de dependencias de Firebase
+- Correcciones menores de UI
+
+Características de la app:
+- Navegación con go_router
+- Consumo de API de Giphy
+- Cronómetro funcional con Timer
+- Tareas pesadas con Isolate
+- Manejo de asincronía con Future/async-await
+
+```
+
+### Paso 4: Distribución a Testers
+
+1. **Copiar enlace de instalación** generado por Firebase
+2. **Verificar que el tester reciba el correo** de invitación
+3. **Instalar en dispositivo Android físico**
+4. **Probar funcionalidades principales**
+
+### Paso 5: Actualización de Versión
+
+Para distribuir una actualización:
+
+1. **Actualizar versión en `pubspec.yaml`**:
+   ```yaml
+   version: 1.0.2+3  # Incrementar versión
+   ```
+
+2. **Generar nuevo APK**:
+   ```bash
+   flutter build apk --release
+   ```
+
+3. **Subir nuevo release** en Firebase App Distribution
+
+4. **Los testers recibirán notificación** de la actualización
+
+## Verificaciones Pre-Release
+
+### AndroidManifest.xml
+```xml
+<!-- Permisos mínimos requeridos -->
+<uses-permission android:name="android.permission.INTERNET"/>
+```
+
+### build.gradle.kts
+```kotlin
+// Verificar applicationId
+applicationId = "com.example.flutter_application_1"
+
+// Versión desde Flutter
+versionCode = flutter.versionCode
+versionName = flutter.versionName
+```
+
+## Buenas Prácticas
+
+### Release Notes
+- Incluir número de versión
+- Fecha del release
+- Responsable(s)
+- Lista de cambios claros
+- Instrucciones especiales (si aplica)
+- Credenciales de prueba (si aplica)
+
+### Versionado
+- **MAJOR**: Cambios incompatibles en API
+- **MINOR**: Nueva funcionalidad compatible
+- **PATCH**: Corrección de bugs
+- **BUILD**: Número incremental de build

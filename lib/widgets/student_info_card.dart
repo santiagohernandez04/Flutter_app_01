@@ -21,7 +21,7 @@ class StudentInfoCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Taller 2 - Navegación, widgets y ciclo de vida',
+              'Taller 5 - Firebase App Distribution v1.0.2',
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.grey[600],
