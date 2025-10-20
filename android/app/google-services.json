@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "713202344389",
+    "project_id": "flutterappuceva",
+    "storage_bucket": "flutterappuceva.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:713202344389:android:8839d94cb03e32161e6bac",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3OOlyGn9bhhDH0DD0N-py2jAY9XQ5O9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

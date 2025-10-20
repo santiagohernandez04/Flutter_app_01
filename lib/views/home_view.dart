@@ -31,7 +31,7 @@ class _HomeViewState extends State<HomeView> {
     
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Aprendiendo Flutter'),
+        title: const Text('Aprendiendo Flutter v1.0.2'),
         actions: [
           IconButton(
             icon: const Icon(Icons.speed, color: Colors.deepOrange),
