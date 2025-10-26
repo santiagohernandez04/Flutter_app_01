@@ -49,6 +49,8 @@ class _HomeViewState extends State<HomeView> {
             const SizedBox(height: 20),
             const _NavigationSection(),
             const SizedBox(height: 20),
+            const _Taller2Section(),
+            const SizedBox(height: 20),
             const _Taller3Section(),
             const SizedBox(height: 20),
             const _Taller4Section(),
@@ -100,6 +102,40 @@ class _NavigationSection extends StatelessWidget {
           icon: Icons.swap_horiz,
           color: Colors.orange,
           onPressed: () => context.pushReplacement('/details/replace/REPLACE Navigation'),
+        ),
+      ],
+    );
+  }
+}
+
+class _Taller2Section extends StatelessWidget {
+  const _Taller2Section();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Autenticación JWT:',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        const SizedBox(height: 20),
+        NavigationButton(
+          title: 'Ir a Login/Registro',
+          icon: Icons.login,
+          color: Colors.blue,
+          onPressed: () => context.push('/login'),
+        ),
+        const SizedBox(height: 8),
+        NavigationButton(
+          title: 'Ver Evidencia de Almacenamiento',
+          icon: Icons.storage,
+          color: Colors.green,
+          onPressed: () => context.push('/evidence'),
         ),
       ],
     );
