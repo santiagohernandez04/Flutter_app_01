@@ -400,3 +400,111 @@ versionName = flutter.versionName
 - **MINOR**: Nueva funcionalidad compatible
 - **PATCH**: Corrección de bugs
 - **BUILD**: Número incremental de build
+
+# Autenticación JWT en Flutter
+
+## Descripción
+Módulo de autenticación JWT en Flutter que se conecta con la API pública de parking.visiontic.com.co. Implementa registro de usuarios, login con JWT, manejo de estados, almacenamiento local seguro y vista de evidencia de datos almacenados.
+
+**Rama**: `feature/taller_jwt`
+
+## Características Implementadas
+
+### 1. Autenticación JWT
+- **Registro de usuarios**: Crear nuevas cuentas en la API (`POST /users`)
+- **Login**: Autenticación con email y contraseña (`POST /login`)
+- **Manejo de estados**: Estados de carga, éxito y error
+- **Manejo de errores**: Validación y mensajes de error apropiados
+- **Flujo automático**: Registro exitoso → Login automático → Almacenamiento
+
+### 2. Almacenamiento Local Seguro
+- **SharedPreferences**: Almacena datos no sensibles (nombre, email, teléfono, rol, ID)
+- **FlutterSecureStorage**: Almacena tokens de acceso y refresh de forma segura
+- **Separación de datos**: Datos sensibles vs no sensibles correctamente separados
+- **Persistencia**: Datos persisten entre sesiones de la aplicación
+
+### 3. Vista de Evidencia
+- **Información del usuario**: Muestra datos almacenados en SharedPreferences
+- **Estado de sesión**: Indica si hay token presente y válido
+- **Tokens**: Muestra preview de los tokens almacenados (primeros 20 caracteres)
+- **Navegación**: Botón para volver al home
+- **Cerrar sesión**: Botón para limpiar todos los datos almacenados
+
+### 4. Navegación y UX
+- **Router inteligente**: Redirección automática basada en estado de autenticación
+- **Formularios validados**: Validación de email, contraseña y campos requeridos
+- **Estados de carga**: Indicadores visuales durante las operaciones
+- **Mensajes de feedback**: SnackBars para éxito y errores
+
+## API Utilizada
+
+- **Base URL**: Configurada en variable de entorno `API_BASE_URL` (archivo `.env`)
+- **URL por defecto**: `https://parking.visiontic.com.co/api`
+- **Endpoints**:
+  - `POST /users` - Registro de usuarios (crea usuario y hace login automático)
+  - `POST /login` - Login de usuarios
+  - `GET /perfil` - Obtener perfil del usuario autenticado
+  - `POST /logout` - Cerrar sesión
+
+### Servicios Implementados
+
+#### `AuthService`
+- **Estados**: `initial`, `loading`, `success`, `error`
+- **Métodos**:
+  - `register()`: Registro de usuarios con login automático
+  - `login()`: Autenticación con JWT
+  - `logout()`: Cerrar sesión y limpiar datos
+  - `isAuthenticated()`: Verificar estado de autenticación
+
+#### `LocalStorageService`
+- **SharedPreferences**: Datos no sensibles del usuario
+- **FlutterSecureStorage**: Tokens JWT de forma segura
+- **Métodos de limpieza**: Eliminar todos los datos al cerrar sesión
+
+## Configuración de Variables de Entorno
+
+### Archivo `.env`
+```env
+# API Configuration
+API_BASE_URL=https://parking.visiontic.com.co/api
+```
+
+## Flujo de Datos
+
+### Registro/Login
+```
+Usuario → Formulario → AuthService → API → Respuesta → LocalStorageService
+```
+
+### Almacenamiento
+```
+Datos No Sensibles → SharedPreferences
+Tokens Sensibles → FlutterSecureStorage
+```
+
+### Verificación de Sesión
+```
+AppRouter → AuthService.isAuthenticated() → LocalStorageService → Redirección
+```
+
+## Características Técnicas
+
+### Manejo de Estados
+- **AuthState.initial**: Estado inicial
+- **AuthState.loading**: Operación en progreso
+- **AuthState.success**: Operación exitosa
+- **AuthState.error**: Error en la operación
+
+### Validaciones
+- **Email**: Formato válido usando RegExp
+- **Contraseña**: Mínimo 6 caracteres
+- **Nombre**: Mínimo 2 caracteres
+- **Campos requeridos**: Validación de campos obligatorios
+
+### Seguridad
+- **Tokens**: Almacenados en FlutterSecureStorage
+- **Datos sensibles**: Separados de datos no sensibles
+- **Validación**: Validación tanto en cliente como servidor
+
+---
+
