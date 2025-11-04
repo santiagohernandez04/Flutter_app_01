@@ -7,6 +7,8 @@ import '../views/isolate_view.dart';
 import '../views/giphy_list_view.dart';
 import '../views/login_view.dart';
 import '../views/evidence_view.dart';
+import '../views/universidades_list_view.dart';
+import '../views/universidad_form_view.dart';
 import '../services/auth_service.dart';
 
 class AppRouter {
@@ -77,6 +79,25 @@ class AppRouter {
         path: '/evidence',
         name: 'evidence',
         builder: (context, state) => const EvidenceView(),
+      ),
+      // Rutas para universidades
+      GoRoute(
+        path: '/universidades',
+        name: 'universidades',
+        builder: (context, state) => const UniversidadesListView(),
+      ),
+      GoRoute(
+        path: '/universidades/nueva',
+        name: 'universidad-nueva',
+        builder: (context, state) => const UniversidadFormView(),
+      ),
+      GoRoute(
+        path: '/universidades/editar/:id',
+        name: 'universidad-editar',
+        builder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return UniversidadFormView(universidadId: id);
+        },
       ),
     ],
   );

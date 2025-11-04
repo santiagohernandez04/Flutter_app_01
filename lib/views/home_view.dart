@@ -55,6 +55,8 @@ class _HomeViewState extends State<HomeView> {
             const SizedBox(height: 20),
             const _Taller4Section(),
             const SizedBox(height: 20),
+            const _TallerFirebaseSection(),
+            const SizedBox(height: 20),
             const _GridViewSection(),
           ],
         ),
@@ -204,6 +206,33 @@ class _Taller4Section extends StatelessWidget {
           icon: Icons.gif_box,
           color: Colors.pinkAccent,
           onPressed: () => context.push('/giphy'),
+        ),
+      ],
+    );
+  }
+}
+
+class _TallerFirebaseSection extends StatelessWidget {
+  const _TallerFirebaseSection();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Taller Firebase - Universidades:',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        const SizedBox(height: 20),
+        NavigationButton(
+          title: 'Gestionar Universidades',
+          icon: Icons.school,
+          color: Colors.blue,
+          onPressed: () => context.push('/universidades'),
         ),
       ],
     );
