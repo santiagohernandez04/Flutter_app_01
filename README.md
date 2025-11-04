@@ -508,3 +508,40 @@ AppRouter → AuthService.isAuthenticated() → LocalStorageService → Redirecc
 
 ---
 
+# Taller Firebase - Integración con Firestore y CRUD de Universidades
+
+## Descripción
+Módulo en Flutter que integra Firebase Firestore para gestionar la colección `universidades` con operaciones CRUD completas, sincronización en tiempo real y validaciones.
+
+**Rama**: `feature/taller_firebase_universidades`
+
+## Características Implementadas
+- **CRUD completo**: Crear, Leer, Actualizar y Eliminar universidades
+- **Sincronización en tiempo real**: Streams de Firestore con `StreamBuilder`
+- **Validaciones**: Campos obligatorios y validación de URL para `pagina_web`
+- **Modelo de datos**: Colección `universidades` con campos: `nit`, `nombre`, `direccion`, `telefono`, `pagina_web`
+
+## Arquitectura
+- **Modelo** (`lib/models/universidad_model.dart`): `UniversidadModel` con métodos `fromFirestore()`, `toFirestore()` y `copyWith()`
+- **Servicio** (`lib/services/universidad_service.dart`): `UniversidadService` con métodos CRUD que interactúan con Firestore
+- **Vista**: 
+  - `UniversidadesListView`: Listado con `StreamBuilder` para tiempo real
+  - `UniversidadFormView`: Formulario reutilizable para crear/editar
+
+## Gestión de Estado
+- **StreamBuilder**: Sincronización automática con Firestore usando `Stream<List<UniversidadModel>>`
+- **Estados locales**: `setState()` para controlar `_isLoading` y `_isLoadingData` en el formulario
+- **Actualización automática**: Los cambios se reflejan instantáneamente sin necesidad de refresh manual
+
+## Validaciones
+- **Campos obligatorios**: Todos los campos (nit, nombre, direccion, telefono, pagina_web) son requeridos
+- **Validación de URL**: `pagina_web` debe tener formato válido (http/https)
+- **Validación en cliente**: Validaciones antes de enviar datos a Firestore
+
+## Rutas
+- `/universidades` - Listado de universidades
+- `/universidades/nueva` - Formulario para crear
+- `/universidades/editar/:id` - Formulario para editar
+
+---
+
